@@ -2,26 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Авторизация</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
 </head>
 <body>
-  <div>
-      <form action="{% url 'users:login' %}" method="post">
-          {% csrf_token %}
-          <div class="form-group">
-              <label class="small mb-1" for="{{ form.username.id_for_label }}">
-                  Имя пользователя
-              </label>
-              {{ form.username }}
-          </div>
-          <div class="form-group">
-              <label class="small mb-1" for="{{ form.password.id_for_label }}">
-                  Пароль
-              </label>
-              {{ form.password }}
-          </div>
-          <input type="submit" value="Авторизоваться">
-      </form>
+  <div class="container">
+      <div class="w-50 mt-5 d-flex justify-content-center flex-column">
+          <h1>Войти в аккаунт</h1>
+          <form action="{% url 'users:login' %}" method="post" class="">
+              {% csrf_token %}
+              <div class="form-group">
+                  <label class="small mb-1" for="{{ form.username.id_for_label }}">
+                      Имя пользователя
+                  </label>
+                  {{ form.username }}
+              </div>
+              <div class="form-group">
+                  <label class="small mb-1" for="{{ form.password.id_for_label }}">
+                      Пароль
+                  </label>
+                  {{ form.password }}
+              </div>
+              <button type="submit" class="btn btn-primary mt-3">Авторизоваться</button>
+          </form>
+      </div>
   </div>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
 </body>
 </html>
