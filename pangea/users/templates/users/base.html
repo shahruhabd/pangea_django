@@ -15,6 +15,7 @@
      {% if user.is_authenticated %}
         <a href="{% url 'users:logout' %}" class="btn btn-danger">Выйти</a><br>
         <a href="/users/profile" class="btn btn-dark mt-1">Профиль</a>
+        <a href="/posts" class="btn btn-dark mt-1">Посты</a>
      {% else %}
         <a href="/users/login" class="btn btn-primary">Войти</a>
         <a href="/users/registration" class="btn btn-primary">Зарегистрироваться</a>
