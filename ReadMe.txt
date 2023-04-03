@@ -2,4 +2,4 @@
 pip install djangorestframework-simplejwt
 
 # for push-merge
-git push -f origin master
+git push -f origin main
