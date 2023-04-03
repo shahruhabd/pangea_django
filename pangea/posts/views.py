@@ -9,10 +9,14 @@ def post_list(request):
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect('/posts/')
+        if request.user.is_authenticated:
+            if form.is_valid():
+                title = form.data.get('title')
+                description = form.data.get('description')
+                cost = form.data.get('cost')
+                post = Post(title=title, description=description, cost=cost, user_id_id=request.user.id)
+                post.save()
+                return redirect('/posts/')
     else:
         form = PostForm()
     return render(request, 'post_edit.html', {'form': form})
