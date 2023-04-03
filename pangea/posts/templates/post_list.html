@@ -1,0 +1,19 @@
+{% block content %}
+ <div class="container m-3">
+     <a href="/posts/new">Создать объявление</a>
+
+    {% for post in posts %}
+    <div class="post">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.description }}</p>
+        <p>{{ post.created_at }}</p>
+        <p>{{ post.updated_at }}</p>
+        <p>{{ post.cost }}</p>
+        <p>{{ post.user_id }}</p>
+    </div>
+{% endfor %}
+ </div>
+{% endblock %}
+
+
+
