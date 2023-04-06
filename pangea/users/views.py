@@ -4,9 +4,8 @@ from django.urls import reverse
 
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 
-
 def index(request):
-    return render(request, 'users/base.html')
+    return render(request, 'users/profile.html')
 
 
 def login(request):
@@ -18,7 +17,7 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user:
                 auth.login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('posts:post_list'))
     else:
         form = UserLoginForm()
     context = {'form': form}
@@ -52,4 +51,4 @@ def profile(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('posts:post_list'))

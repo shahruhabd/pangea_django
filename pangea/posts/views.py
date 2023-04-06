@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 from .models import Post
 from .forms import PostForm
 
+
 def post_list(request):
     posts = Post.objects.all()
-    return render(request, 'post_list.html', {'posts': posts})
+    return render(request, 'posts/post_list.html', {'posts': posts})
+
 
 def post_new(request):
     if request.method == "POST":
@@ -15,4 +17,8 @@ def post_new(request):
             return redirect('/posts/')
     else:
         form = PostForm()
-    return render(request, 'post_edit.html', {'form': form})
+    return render(request, 'posts/post_edit.html', {'form': form})
+
+
+def page(request):
+    return render(request, 'posts/start-page.html')
