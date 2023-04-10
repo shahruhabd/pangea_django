@@ -1,0 +1,5 @@
+body {
+  background-image: url("/static/users/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

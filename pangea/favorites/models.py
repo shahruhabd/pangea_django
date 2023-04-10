@@ -2,7 +2,7 @@ from django.db import models
 
 
 # from users.models import User
-# from posts.models import Post
+# from templates.models import Post
 # Create your models here.
 
 

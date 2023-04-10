@@ -1,0 +1,26 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+     <div class="container m-3">
+         <a href="/posts/new">Создать объявление</a>
+
+        {% for post in posts %}
+         <div class="card mb-3">
+          <div class="card-header">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.description }}</p>
+          </div>
+          <div class="card-body d-flex">
+              <img src="{{ post.image.url }}" alt="{{ post.title }}" width="400">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{ post.created_at }}</li>
+              <li class="list-group-item">Цена: {{ post.cost }}тг</li>
+              <li class="list-group-item">От: {{ post.user_id }}</li>
+            </ul>
+          </div>
+        </div>
+        {% endfor %}
+     </div>
+{% endblock %}
+
+
+
