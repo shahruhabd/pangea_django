@@ -9,8 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
-<body class="bg-success-subtle">
-  <div class="container d-flex justify-content-between align-items-center p-3">
+<body style="background: #7fa99b">
+  <div class="container d-flex justify-content-between align-items-center p-3" style="max-width: 1200px">
     <a href="/" class="d-flex align-items-center gap-3 text-decoration-none link-light">
       <img src="{% static 'img/users/logo-white.png' %}" alt="logo" width="32">
       <div class="fs-1 text">PANGEA</div>
@@ -25,8 +25,8 @@
         {% if user.is_authenticated %}
             <a href="/users/profile" class="btn btn-dark mt-1">Профиль</a>
         {% else %}
-            <a href="{% url 'users:login' %}">Войти</a>
-              <a href="{% url 'users:registration' %}">Регистрация</a>
+            <a href="{% url 'users:login' %}" class="badge badge-primary">Войти</a>
+              <a href="{% url 'users:registration' %}" class="badge badge-primary">Регистрация</a>
         {% endif %}
 
         {% if user.is_superuser %}
