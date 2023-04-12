@@ -1,0 +1,22 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+    <h1>Чат с {{ recipient.username }}</h1>
+    {% for message in messages %}
+        <div class="message">
+            {% if message.sender == user %}
+                <p><strong>Вы:</strong> {{ message.content }}</p>
+            {% else %}
+                <p><strong>{{ message.sender.username }}:</strong> {{ message.content }}</p>
+            {% endif %}
+            <p class="timestamp">{{ message.timestamp }}</p>
+        </div>
+    {% endfor %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <textarea name="content" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+{% endblock %}

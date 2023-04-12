@@ -1,6 +1,6 @@
 {% extends 'posts/base.html' %}
 {% load static %}
-
+{% block title %}Личная страница {{ user }}{% endblock %}
 {% block css %}
     <link href="{% static 'css/users/profile.css' %}" rel="stylesheet">
 {% endblock %}

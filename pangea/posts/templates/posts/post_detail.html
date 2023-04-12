@@ -1,4 +1,5 @@
 {% extends 'posts/base.html' %}
+{% block title %}Объявление: {{ post.title }}{% endblock %}
 {% block content %}
 {% with user=request.user %}
 <div class="container" style="max-width: 900px">
@@ -21,6 +22,12 @@
               <button type="submit" class="btn btn-danger">Удалить</button>
             </form>
           {% endif %}
+          {% if post.user_id != request.user %}
+            <a href="{% url 'chat:chat' user_id=post.user_id.id %}" class="btn btn-primary">Связаться с пользователем</a>
+          {% endif %}
+
+
+
         </div>
 
       </div>

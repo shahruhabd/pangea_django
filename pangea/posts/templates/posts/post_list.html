@@ -1,6 +1,7 @@
 {% extends 'posts/base.html' %}
+{% block title %}Поиск жилья в Алматы{% endblock %}
 {% block content %}
-     <div class="container" style="max-width: 1200px">
+     <div class="">
          {% if user.is_authenticated %}
          <a href="/posts/new" class="btn btn-primary my-3">Создать объявление</a>
          {% endif %}
