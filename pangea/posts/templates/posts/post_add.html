@@ -1,8 +1,10 @@
 {% extends 'posts/base.html' %}
 {% block content %}
-<form method="POST" class="post-form" enctype="multipart/form-data">
+<div class="container bg-warning-subtle py-3 rounded" style="max-width: 600px">
+    <form method="POST" class="post-form d-flex flex-column" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Save</button>
+    <button type="submit" class="btn btn-primary">Save</button>
 </form>
+</div>
 {% endblock %}

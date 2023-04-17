@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Избранные посты</h1>
+    <ul>
+        {% for favorite in favorite_posts %}
+            <li><a href="{% url 'post_detail' post_id=favorite.post.id %}">{{ favorite.post.title }}</a></li>
+        {% empty %}
+            <li>Нет избранных постов</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

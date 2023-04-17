@@ -10,7 +10,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     cost = models.IntegerField(null=False)
-    user_id = models.ForeignKey(User, null=False, on_delete=models.RESTRICT)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # def get_absolute_url(self):
     #     return reverse('post',kwargs={'post_id':self.pk})
@@ -18,3 +18,6 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
+
+    favorites = models.ManyToManyField(User, related_name='favorite_posts')
+
