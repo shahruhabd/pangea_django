@@ -19,5 +19,4 @@ class Post(models.Model):
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
 
-    favorites = models.ManyToManyField(User, related_name='favorite_posts')
 

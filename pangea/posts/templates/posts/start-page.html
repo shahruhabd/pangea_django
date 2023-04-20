@@ -1,18 +1,23 @@
-{% extends 'posts/base.html' %}
+{% extends 'posts/base.html' %} 
+{% load static %}
+{% block title %}Пангея. Поиск руммейта в Алматы.{% endblock %} 
+{% block css %}<link href="{% static 'css/posts/start-page.css' %}" rel="stylesheet"/>{% endblock %} 
 {% block content %}
-<div class="container">
-  <div class="col-md-6 mx-auto text-center">
-    <div>Вместе с нами!</div>
-    <hr>
-    <div>Быстро и легко</div>
+<div class="start-page_wrapper">
+  <div class="text-center" style="margin: 48px 0 60px;">
+    <div class="start-page_text">Вместе с нами!</div>
+    <div class="start-page_devider"/></div>
+    <div class="start-page_text" style="font-size: 51px; text-shadow:0 0 20px #75FFC5;">Быстро и легко</div>
   </div>
-  <div>
+  <div class="start-page_input-link">
     <a href="posts/">
-      <span class="">
-        Поиск сожителя
-      </span>
-      <img src="">
+      <span class="start-page_input-link_text text-animation"> Поиск сожителя </span>
+      <img src="{% static 'img/start-page/loupe.png' %}" alt="">
     </a>
   </div>
+  <a href="posts/">
+    <img src="{% static 'img/start-page/house-blur.png' %}" alt="house" class="start-page_house">
+    <img src="{% static 'img/start-page/house.png' %}" alt="house" class="start-page_house">
+  </a>
 </div>
 {% endblock %}

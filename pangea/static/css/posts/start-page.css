@@ -1,0 +1,65 @@
+.start-page_wrapper {
+    height: calc(100vh - 154px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.start-page_text {
+    font-weight: 900;
+    font-size: 75px;
+    color: #FFFFFF;
+    letter-spacing: 1.75px;
+}
+.start-page_devider {
+    height: 5px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.start-page_input-link {
+    height: 63px;
+    width: 75%;
+    background: rgba(255, 255, 255, 0.91);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 0 27px;
+    cursor: pointer;
+}
+.start-page_input-link a {
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.start-page_input-link_text {
+    color: rgba(120, 120, 120, 0.66);
+    font-weight: 500;
+    font-size: 21px;
+    letter-spacing: 1.25px;
+}
+.start-page_house {
+    position: absolute;
+    right: calc((100vw - 1200px)/2);
+    cursor: pointer;
+    transition: 0.5s;
+}
+.start-page_house:hover {
+    transform: rotate(5deg);
+    transition: 1s;
+}
+
+/* Создаем анимацию печати текста */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 225px }
+  }
+  
+  /* Применяем анимацию к текстовому блоку */
+  .text-animation {
+    display: inline-block;
+    animation: typing 4s steps(30, end) infinite;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: .15em solid #1ab977;
+  }
