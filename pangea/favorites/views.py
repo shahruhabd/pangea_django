@@ -15,4 +15,4 @@ def add_to_favorite(request, post_id):
 @login_required
 def favorite_posts(request):
     favorite_posts = Favorite.get_favorite_posts_for_user(request.user)
-    return render(request, 'favorite_posts.html', {'favorite_posts': favorite_posts})
+    return render(request, 'favorites_list.html', {'favorite_posts': favorite_posts})
