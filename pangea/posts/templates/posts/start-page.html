@@ -3,8 +3,8 @@
 {% block title %}Пангея. Поиск руммейта в Алматы.{% endblock %} 
 {% block css %}<link href="{% static 'css/posts/start-page.css' %}" rel="stylesheet"/>{% endblock %} 
 {% block content %}
-<div class="start-page_wrapper">
-  <div class="text-center" style="margin: 48px 0 60px;">
+<div class="start-page_wrapper" style="height: 80%;">
+  <div class="text-center" style="margin: 12px 0 60px;">
     <div class="start-page_text">Вместе с нами!</div>
     <div class="start-page_devider"/></div>
     <div class="start-page_text" style="font-size: 51px; text-shadow:0 0 20px #75FFC5;">Быстро и легко</div>
@@ -15,9 +15,9 @@
       <img src="{% static 'img/start-page/loupe.png' %}" alt="">
     </a>
   </div>
-  <a href="posts/">
+  <a href="posts/" class="start-page_img_link-house">
     <img src="{% static 'img/start-page/house-blur.png' %}" alt="house" class="start-page_house">
-    <img src="{% static 'img/start-page/house.png' %}" alt="house" class="start-page_house">
+    <img src="{% static 'img/start-page/house.png' %}" alt="house" class="start-page_house" style="margin: 10px 0 0 50px;">
   </a>
 </div>
 {% endblock %}

@@ -1,38 +1,56 @@
 {% extends 'posts/base.html' %}
+{% load static %}
 {% block title %}Объявление: {{ post.title }}{% endblock %}
+{% block css %}
+<link href="{% static 'css/posts/post_detail.css' %}" rel="stylesheet" />
+{% endblock %}
 {% block content %}
 {% with user=request.user %}
-<div class="container" style="max-width: 900px">
-    <div class="card">
-      <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="my-3">{{ post.title }}</h5>
-         <small>{{ post.created_at }}</small>
+
+<div class="post_detail_wrapper">
+  {% if post.image %}
+  <div><img src="{{ post.image.url }}" alt="{{ post.title }}" width="400" style="border-radius: 8px;"></div>
+  {% else %}
+  <div><img src="{% static 'img/posts/default_img.png'%}" alt="{{ post.title }}" width="400"
+      style="border-radius: 8px;"></div>
+  {% endif %}
+  <div class="d-flex flex-column w-100">
+    <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 30px;">
+      <h5 class="post_detail_title">{{ post.title }}</h5>
+      {% if post.cost %}
+      <div class="d-flex justify-content-end">
+        <div class="post_detail_cost">Цена: {{ post.cost }}тг</div>
       </div>
-      <div class="card-body d-flex py-4">
-        <img src="{{ post.image.url }}" alt="{{ post.title }}" width="400">
-        <div class="d-flex flex-column justify-content-between w-100 px-3">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{ post.description }}</li>
-            <li class="list-group-item">Цена: {{ post.cost }}тг</li>
-            <li class="list-group-item">От: {{ post.user_id }}</li>
-          </ul>
-          {% if user.is_authenticated and user == post.user_id %}
-            <form action="{% url 'posts:post_delete' post.pk %}" method="post" class="text-center">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-danger">Удалить</button>
-            </form>
-          {% endif %}
-          {% if post.user_id != request.user %}
-            <a href="{% url 'chat:chat' user_id=post.user_id.id %}" class="btn btn-primary">Связаться с пользователем</a>
-          {% endif %}
-
-
-
-        </div>
-
+      {% endif %}
+    </div>
+    <div class="post_detail_desc">{{ post.description }}</div>
+    <hr>
+    <div class="post_detail_autor_contact">
+      <div style="font-weight: 600;">{{ post.user_id.first_name }} {{ post.user_id.last_name }}</div>
+      <div class="d-flex post_detail_phone-number">
+        <a href="tel:{{ post.user_id.phone_number }}" class="post_detail_phone-number_block" id="tel">{{ post.user_id.phone_number }}</a>
+        <button class="post_detail_phone-number_btn" id="phone">Показать номер телефона</button>
       </div>
+    </div>
+    <div class="post_detail_autor">Опубликовано: {{ post.created_at }}</div>
+    {% if user.is_authenticated and user == post.user_id %}
+    <div class="my-3">
+      <a href="{% url 'posts:delete_post' post.pk %}" class="post_detail_btn-del">Удалить</a>
+    </div>
+    {% endif %}
   </div>
+
 </div>
+
+<script>
+const phone = document.getElementById('phone');
+const tel = document.getElementById('tel');
+phone.addEventListener('click', () => {
+  tel.classList.toggle('show')
+})
+</script>
+
+
 {% endwith %}
 {% endblock %}
 

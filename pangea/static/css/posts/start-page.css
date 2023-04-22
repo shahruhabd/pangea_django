@@ -38,9 +38,13 @@
     font-size: 21px;
     letter-spacing: 1.25px;
 }
+.start-page_img_link-house {
+    position: relative;
+}
 .start-page_house {
     position: absolute;
-    right: calc((100vw - 1200px)/2);
+    /* bottom: 20px; */
+    /* right: calc((100vw - 1200px)/2); */
     cursor: pointer;
     transition: 0.5s;
 }

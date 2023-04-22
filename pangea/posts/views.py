@@ -1,7 +1,9 @@
 from django.core.files.storage import default_storage
 from django.shortcuts import render, redirect, get_object_or_404, redirect
 from .models import Post
-from .forms import PostForm
+from rent.models import Rent
+from .forms import PostDeleteForm, PostForm
+from django.contrib import messages
 
 
 def post_list(request):
@@ -14,12 +16,10 @@ def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            title = request.POST['title']
-            description = request.POST['description']
-            image = request.FILES.get('image')
-            cost = request.POST.get('cost')
-            post = Post(title=title, description=description, image=image, cost=cost, user_id=request.user)
-            # post = form.save()
+            post = form.save(commit=False)
+            post.user_id = request.user
+            post.save()
+            messages.success(request, 'Ваше объявление было успешно опубликовано!')
             post.save()
             return redirect('/posts/')
     else:
@@ -35,10 +35,17 @@ def post_detail(request, pk):
     return render(request, 'posts/post_detail.html', {'post': post})
 
 
-def post_delete(request, pk):
+def delete_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    form = PostDeleteForm(request.POST or None)
+
     if request.method == 'POST':
-        post.delete()
-        return redirect('/posts/')
-    context = {'post': post}
-    return render(request, 'post_delete.html', context)
+        if form.is_valid():
+            is_rent = form.cleaned_data['is_rent']
+            rent = Rent.objects.create(user_id=request.user, post_id=post, is_rent=is_rent)
+            rent.save()
+            post.delete()
+            return redirect('posts:post_list')
+    
+    return render(request, 'posts/post_delete.html', {'post': post})
+

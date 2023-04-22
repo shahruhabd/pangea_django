@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'users',
     'posts',
-    'favorites'
+    'favorites',
+    'rent'
 ]
 
 REST_FRAMEWORK = {
@@ -154,3 +155,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Users
 AUTH_USER_MODEL = 'users.User'
+
+
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+# SESSION_COOKIE_AGE = 1209600

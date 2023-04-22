@@ -1,0 +1,104 @@
+.post_detail_wrapper {
+    display: flex;
+    gap: 40px;
+}
+.post_detail_cost {
+    width: 200px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.91);
+    border-radius: 7.14947px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #086A53;
+    font-weight: 500;
+    font-size: 21px;
+}
+.post_detail_title {
+    font-weight: 800;
+    font-size: 24px;
+    color: #FFFFFF;
+    margin-bottom: 5px;
+}
+.post_detail_desc {
+    font-weight: 600;
+    font-size: 20px;
+    color: #FFFFFF;
+    line-height: 20px;
+    margin-bottom: 30px;
+}
+.post_detail_link-chat {
+    background-color: #086A53;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    width: 100%;
+    transition: 0.5s ease;
+}
+.post_detail_link-chat:hover {
+    background-color: #fff;
+    color: #086A53;
+    transition: 0.3s ease;
+}
+.post_detail_btn-del {
+    background-color: #dc3623;
+    color: #fff;
+    padding: 5px 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 0;
+    transition: 0.5s ease;
+    font-weight: 600;
+}
+.post_detail_btn-del:hover {
+    background-color: #fff;
+    color: #dc3623;
+    transition: 0.5s ease;
+}
+.post_detail_autor_contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    color: #FFFFFF;
+    background-color: #2c786c;
+    border-radius: 12px;
+    padding: 10px;
+    transition: 0.3s ease;
+    margin-bottom: 16px;
+}
+.post_detail_phone-number {
+    border: 0;
+    background-color: inherit;
+    border-radius: 12px;
+    color: #FFFFFF;
+    padding: 5px 10px;
+    background-color: #3baea0;
+    font-weight: 600;
+    align-items: center;
+}
+.post_detail_phone-number:hover {
+    background-color: #93e4c1;
+    transition: 0.3s ease;
+}
+.post_detail_phone-number_block {
+    display: none;
+    border: 0;
+    border-radius: 12px;
+    color: #FFFFFF;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: underline;
+    font-size: 14px;
+}
+.show {
+    display: block;
+}
+.post_detail_phone-number_btn {
+    border: 0;
+    background-color: inherit;
+    color: #fff;
+}
+.post_detail_autor {
+    color: #fff;
+}

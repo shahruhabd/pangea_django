@@ -1,0 +1,21 @@
+{% extends 'posts/base.html' %}
+{% block title %}Удалить объявление{% endblock %}
+{% block content %}
+<div class="d-flex flex-column justify-content-between align-items-center bg-success-subtle p-3 border border-info rounded w-75" style="height: 400px; color: #2c786c; margin: 0 auto;">
+  <h1 class="h-25">Удалить объявление</h1>
+  <form method="post" class="h-75 d-flex flex-column justify-content-between">
+    {% csrf_token %}
+    <h5 class="my-3">Уверены ли вы, что хотите удалить объявление "{{ post.title }}"?</h5>
+
+    <div class="text-center my-4">
+      <h6>Удалось ли вам сдать квартиру?</h6>
+      <div>
+        <input type="radio" name="is_rent" value="True" class="form-check-input">Да
+        <input type="radio" name="is_rent" value="False" class="form-check-input" style="margin-left: 15px;">Нет<br>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-danger">Удалить</button>
+  </form>
+</div>
+{% endblock %}

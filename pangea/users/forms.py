@@ -6,9 +6,9 @@ from users.models import User
 
 class UserLoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control py-2', 'placeholder': 'Введите имя пользователя'}))
+        'class': 'login_form', 'style': 'margin-bottom: 30px', 'placeholder': 'Введите имя пользователя'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'class': 'form-control py-2', 'placeholder': 'Введите пароль'}))
+        'class': 'login_form', 'style': 'margin-bottom: 15px', 'placeholder': 'Введите пароль'}))
 
     class Meta:
         model = User
@@ -17,27 +17,30 @@ class UserLoginForm(AuthenticationForm):
 
 class UserRegistrationForm(UserCreationForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control py-2', 'placeholder': 'Введите имя'}))
+        'class': 'login_form', 'style': 'margin-bottom: 14px', 'placeholder': 'Введите имя'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control py-2', 'placeholder': 'Введите фамилию'}))
+        'class': 'login_form', 'style': 'margin-bottom: 14px', 'placeholder': 'Введите фамилию'}))
     username = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control py-2', 'placeholder': 'Введите имя пользователя'}))
+        'class': 'login_form', 'style': 'margin-bottom: 14px', 'placeholder': 'Введите имя пользователя'}))
     email = forms.CharField(widget=forms.EmailInput(attrs={
-        'class': 'form-control py-2', 'placeholder': 'Введите адрес эл. почты'}))
+        'class': 'login_form', 'style': 'margin-bottom: 14px', 'placeholder': 'Введите адрес эл. почты'}))
+    phone_number = forms.CharField(max_length=20, widget=forms.TextInput(attrs={
+        'type': 'tel', 'class': 'login_form', 'style': 'margin-bottom: 14px', 'placeholder': 'Введите номер телефона'}))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={
-        'class': 'form-control py-2', 'placeholder': 'Подтвердите пароль'}))
+        'class': 'login_form', 'style': 'margin-bottom: 14px', 'placeholder': 'Введите пароль'}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={
-        'class': 'form-control py-2', 'placeholder': ''}))
+        'class': 'login_form', 'style': 'margin-bottom: 14px', 'placeholder': 'Подтвердите пароль'}))
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'username', 'email', 'phone_number', 'password1', 'password2')
 
 
 class UserProfileForm(UserChangeForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-2'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-2'}))
-    image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'custom-file-input'}), required=False)
+    phone_number = forms.CharField(widget=forms.TextInput(attrs={'type': 'tel', 'class': 'form-control py-2'}))
+    image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control'}), required=False)
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control-custom w-100 p-2 border rounded '
                                                                       'bg-dark-subtle', 'readonly': True}))
     email = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control-custom w-100 p-2 border rounded '
@@ -45,4 +48,4 @@ class UserProfileForm(UserChangeForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'image', 'username', 'email')
+        fields = ('first_name', 'last_name', 'phone_number', 'image', 'username', 'email')
