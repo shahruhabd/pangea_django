@@ -9,7 +9,6 @@ urlpatterns = [
     path('', page, name='start-page'),
     path('posts/', include('posts.urls', namespace='posts')),
     path('users/', include('users.urls', namespace='users')),
-    path('chat/', include('chat.urls', namespace='chat')),
 ]
 
 if settings.DEBUG:

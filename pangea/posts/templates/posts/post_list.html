@@ -1,34 +1,59 @@
 {% extends 'posts/base.html' %}
+{% load static %}
 {% block title %}Поиск жилья в Алматы{% endblock %}
+{% block css %}
+<link href="{% static 'css/posts/post_list.css' %}" rel="stylesheet" />{% endblock %}
 {% block content %}
-     <div class="">
-         {% if user.is_authenticated %}
-         <a href="/posts/new" class="btn btn-primary my-3">Создать объявление</a>
-         {% endif %}
-
-        <div class="d-flex flex-column justify-content-center">
-            {% for post in posts %}
-             <div class="card mb-3">
-              <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="my-3">{{ post.title }}</h5>
-                <small>{{ post.created_at }}</small>
-              </div>
-              <div class="card-body d-flex">
-                <img src="{{ post.image.url }}" alt="{{ post.title }}" width="400" class="rounded">
-                <div class="d-flex flex-column w-100 px-3 justify-content-between">
-                    <ul class="w-100 list-group list-group-flush">
-                      <li class="list-group-item">{{ post.description }}</li>
-                      <li class="list-group-item">Цена: {{ post.cost }}тг</li>
-                      <li class="list-group-item">От: {{ post.user_id }}</li>
-                    </ul>
-                    <a href="{% url 'posts:post_detail' post.pk %}" class="btn btn-primary">Подробнее</a>
-                </div>
-              </div>
-             </div>
-            {% endfor %}
+{% if messages or form.non_field_errors %}
+  <div class="alert {% if messages %} alert-success {% else %} alert-danger {% endif %} alert-dismissible fade show"
+    role="alert">
+    {% if messages %}
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    {% else %}
+    {{ form.non_field_errors }}
+    {% endif %}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endif %}
+<div class="">
+  <div class="d-flex flex-column justify-content-center">
+    {% if posts %}
+    {% for post in posts %}
+    <div class="mb-4 post_list_wrapper">
+      <div class="d-flex">
+        {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" width="253" class="post_img">
+        {% else %}
+        <img src="{% static 'img/posts/default_img.png'%}" alt="{{ post.title }}" width="253" class="post_img">
+        {% endif %}
+        <div class="d-flex justify-content-between w-100">
+          <div class="post_main-info">
+            <div>
+              <h5 class="post_title">{{ post.title }}</h5>
+              <div class="post_desc">{{ post.description }}</div>
+            </div>
+            <a href="{% url 'posts:post_detail' post.pk %}" class="post_detail_link">Подробнее</a>
+          </div>
+          <div class="d-flex flex-column justify-content-between align-items-end">
+            {% if post.cost %}
+            <div class="post_cost">{{ post.cost }}тг</div>
+            {% endif %}
+            <img src="{% static 'img/posts/favorite-heart.png' %}" alt="save" class="post_save_icon">
+          </div>
         </div>
-     </div>
+      </div>
+      <div class="post_author_info">
+        <div>Алматы |</div>
+        <div class="">{{ post.user_id }} |</div>
+        <small>{{ post.created_at }}</small>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h2>Пока объявлений нет</h2>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}
-
-
-

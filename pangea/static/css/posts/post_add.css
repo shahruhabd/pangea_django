@@ -1,0 +1,61 @@
+.form-input {
+    height: 50px;
+    margin-bottom: 15px;
+    padding: 0 10px;
+    border-radius: 12px;
+    border: 2px solid #fff;
+    background: rgba(255, 255, 255, 0.31);
+    width: 100%;
+    color: #eee;
+}
+.post_add_submit {
+    background: rgba(255, 255, 255, 0.31);
+    border: 2px solid #FFFFFF;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+    padding: 10px 42px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+.post_add_submit:hover {
+    background-color: #3cc0b5;
+    transition: .3s ease;
+}
+.post_add-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 5px;
+}
+form label {
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 23px;
+    margin-bottom: 7px;
+    margin-left: 7px;
+}
+input[type="file"] {
+    display: none;
+}
+label.file-label {
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 23px;
+    background: rgba(255, 255, 255, 0.31);
+    border: 2px solid #FFFFFF;
+    border-radius: 4px;
+    padding: 4px 9px;
+    cursor: pointer;
+  }
+.form-input_desc {
+    height: 100px;
+    padding: 10px 15px;
+}

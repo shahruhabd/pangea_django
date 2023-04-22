@@ -2,47 +2,72 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% block title %}{% endblock %}</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-      crossorigin="anonymous"
-    />
-    <link href="{% static 'css/posts/main.css' %}" rel="stylesheet"/>
-    {% block css %}{% endblock %}
-  </head>
-  <body style="background-color: #34958e;">
-    <div class="wrapper">
-      <div class="header">
-        <a href="/" class="d-flex align-items-center gap-3 text-decoration-none link-light">
-        <img src="{% static 'img/users/logo-white.png' %}" alt="logo" style="width: 35px;"/>
-        <div class="header_title">PANGEA</div>
-        </a>
-        <div>
-          {% if user.is_authenticated %}
-            <a href="/users/profile" class="header_link">Профиль</a>
-          {% else %}
-            <div class="d-flex gap-5">
-              <a href="{% url 'users:login' %}" class="header_link">Войти</a>
-              <a href="{% url 'users:registration' %}" class="header_link">Регистрация</a>
-            </div>
-          {% endif %} 
 
-          {% if user.is_superuser %}
-            <a href="/admin" class="btn btn-success mt-1">Админка</a>
-          {% endif %}
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+  <link href="{% static 'css/posts/main.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/posts/burger.css' %}" rel="stylesheet" />
+  {% block css %}{% endblock %}
+</head>
+
+<body style="background-color: #34958e;">
+  <div class="wrapper" style="height: 100vh;">
+    <div class="header" style="height: 20%;">
+      <a href="/" class="d-flex align-items-center gap-3 text-decoration-none link-light">
+        <img src="{% static 'img/users/logo-white.png' %}" alt="logo" style="width: 35px;" />
+        <div class="header_title">PANGEA</div>
+      </a>
+      <div>
+        <nav>
+          <ul class="menu" id="menu">
+            {% if user.is_superuser %}
+            <li><a href="/admin" class="header_link">Админка</a></li>
+            {% endif %}
+            <li><a href="{% url 'posts:post_list' %}" class="header_link">Все объявления</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="/posts/new" class="header_link">Создать объявление</a></li>
+            <li><a href="" class="header_link">Избранное</a></li>
+            <li><a href="/users/profile" class="header_link">Профиль {{user}}</a></li>
+            {% else %}
+            <li><a href="{% url 'users:login' %}" class="header_link">Войти</a></li>
+            <li><a href="{% url 'users:registration' %}" class="header_link">Регистрация</a></li>
+            {% endif %}
+          </ul>
+          <div class="burger" id="burger">
+            <div class="line" id="line1"></div>
+            <div class="line line2" id="line2"></div>
+            <div class="line" id="line3"></div>
+          </div>
+        </nav>
       </div>
-      {% block content %}{% endblock %}
     </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    {% block content %}{% endblock %}
+  </div>
+  <script>
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+    const line1 = document.getElementById('line1')
+    const line2 = document.getElementById('line2')
+    const line3 = document.getElementById('line3')
+
+    burger.addEventListener('click', () => {
+      // window.addEventListener('click', () => {
+        menu.classList.toggle('active');
+        burger.classList.toggle('rotate');
+        line1.classList.toggle('line-rotate')
+        line2.classList.toggle('line2_rotate')
+        line2.classList.toggle('line-rotate')
+        line3.classList.toggle('line-rotate')
+      // })
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>

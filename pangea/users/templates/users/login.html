@@ -1,43 +1,55 @@
 {% extends 'users/base.html' %}
+{% load static %}
 {% block title %}Войти на Pangea{% endblock %}
+{% block css %}<link href="{% static 'css/users/auth.css' %}" rel="stylesheet" />{% endblock %}
 {% block content %}
-  <div class="container">
-      <div class="">
-          {% if messages or form.non_field_errors %}
-            <div class="alert
-            {% if messages %} alert-success {% else %} alert-warning {% endif %} alert-dismissible fade show"
-                 role="alert">
-                {% if messages %}
+<div class="login_wrapper">
+    <div class="container_login">
+        <a href="javascript:history.back()" class="login_arrow-back">
+            <img src="{% static 'img/users/arrow-back.png' %}" alt="">
+        </a>
+        <div class="login_main-form">
+            <img src="{% static 'img/users/logo-white.png' %}" alt="logo" style="width: 35px;" class="mb-1" />
+            <div class="login_title mb-3">Вход</div>
+            <div class="">
+                {% if messages or form.non_field_errors %}
+                <div class="alert
+                    {% if messages %} alert-success {% else %} alert-danger {% endif %} alert-dismissible fade show"
+                    role="alert" 
+                    style="width: 500px;"
+                >
+                    {% if messages %}
                     {% for message in messages %}
-                        {{ message }}
+                    {{ message }}
                     {% endfor %}
-                {% else %}
+                    {% else %}
                     {{ form.non_field_errors }}
+                    {% endif %}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 {% endif %}
-                <button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
             </div>
-          {% endif %}
-      </div>
-      <div class="w-50 mt-5 d-flex justify-content-center flex-column card">
-          <h1 class="card-header">Войти в аккаунт</h1>
-          <div class="card-body">
-              <form action="{% url 'users:login' %}" method="post" class="">
-                  {% csrf_token %}
-                  <div class="form-group">
-                      <label class="small mb-1" for="{{ form.username.id_for_label }}">
-                          Имя пользователя
-                      </label>
-                      {{ form.username }}
-                  </div>
-                  <div class="form-group">
-                      <label class="small mb-1" for="{{ form.password.id_for_label }}">
-                          Пароль
-                      </label>
-                      {{ form.password }}
-                  </div>
-                  <button type="submit" class="btn btn-primary mt-3">Авторизоваться</button>
-              </form>
-          </div>
-      </div>
-  </div>
+            <div class="text-center">
+                <form action="{% url 'users:login' %}" method="post" class="">
+                    {% csrf_token %}
+                    <div class="">
+                        {{ form.username }}
+                    </div>
+                    <div class="">
+                        {{ form.password }}
+                    </div>
+                    <div class="text-start mx-2 d-flex gap-2" style="margin-bottom: 27px;">
+                        <input style="width: 14px; cursor: pointer;" type="checkbox" name="remember_me" id="remember_me">
+                        <label class="login_remember_text" for="remember_me">
+                            Запомнить меня
+                        </label>
+                    </div>
+                    <button type="submit" class="login_button">Log in</button><br/>
+                    <a href="{% url 'users:registration' %}" class="login_reg-btn">Зарегистрироваться</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 {% endblock %}

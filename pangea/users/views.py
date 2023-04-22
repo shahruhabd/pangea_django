@@ -14,9 +14,12 @@ def login(request):
         if form.is_valid():
             username = request.POST['username']
             password = request.POST['password']
+            remember_me = request.POST.get('remember_me')
             user = auth.authenticate(username=username, password=password)
             if user:
                 auth.login(request, user)
+                if remember_me:
+                    request.session.set_expiry(1209600)
                 return HttpResponseRedirect(reverse('posts:post_list'))
     else:
         form = UserLoginForm()

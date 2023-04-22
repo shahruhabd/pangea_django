@@ -1,0 +1,62 @@
+.post_detail_wrapper {
+    display: flex;
+    gap: 40px;
+}
+.post_detail_cost {
+    width: 200px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.91);
+    border-radius: 7.14947px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #086A53;
+    font-weight: 500;
+    font-size: 21px;
+}
+.post_detail_title {
+    font-weight: 800;
+    font-size: 20px;
+    color: #FFFFFF;
+    margin-bottom: 5px;
+}
+.post_detail_desc {
+    font-weight: 600;
+    font-size: 15px;
+    color: #FFFFFF;
+    line-height: 20px;
+    margin-bottom: 50px;
+}
+.post_detail_autor {
+    color: #FFFFFF;
+}
+.post_detail_link-chat {
+    background-color: #086A53;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    width: 100%;
+    transition: 0.5s ease;
+}
+.post_detail_link-chat:hover {
+    background-color: #fff;
+    color: #086A53;
+    transition: 0.3s ease;
+}
+.post_detail_btn-del {
+    background-color: #dc3623;
+    color: #fff;
+    padding: 5px 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 0;
+    transition: 0.5s ease;
+}
+.post_detail_btn-del:hover {
+    background-color: #fff;
+    color: #dc3623;
+    transition: 0.5s ease;
+}
+.post_detail_phone-number {
+    color: #086A53;
+}

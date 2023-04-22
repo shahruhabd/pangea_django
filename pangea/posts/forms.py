@@ -3,16 +3,15 @@ from .models import Post
 
 
 class PostForm(forms.ModelForm):
-    title = forms.CharField(label='Заголовок', widget=forms.TextInput(attrs={'class': 'form-control py-2'}))
-    description = forms.CharField(label='Описание', widget=forms.Textarea(attrs={'class': 'form-control py-2'}))
-    cost = forms.IntegerField(label='Цена (в тенге)', widget=forms.NumberInput(attrs={'class': 'form-control py-2'}))
-    image = forms.FileField(label='Фото', widget=forms.ClearableFileInput(attrs={'class': 'form-control py-2'}))
+    title = forms.CharField(label='Заголовок', widget=forms.TextInput(attrs={'class': 'form-input'}))
+    description = forms.CharField(label='Описание', widget=forms.Textarea(attrs={'class': 'form-input form-input_desc'}))
+    cost = forms.IntegerField(required=False, min_value=None, label='Цена (в тенге)', widget=forms.NumberInput(attrs={'class': 'form-input'}))
+    image = forms.FileField(label='Фото', widget=forms.ClearableFileInput(attrs={'class': 'form-image form-control'}))
     class Meta:
         model = Post
         fields = ('title', 'description', 'cost', 'image')
+    image = forms.ImageField(required=False)
 
 
-
-
-# username = forms.CharField(widget=forms.TextInput(attrs={
-#         'class': 'form-control py-2', 'placeholder': 'Введите имя пользователя'}))
+class PostDeleteForm(forms.Form):
+    is_rent = forms.BooleanField(label='Вы сдали квартиру?', required=False)

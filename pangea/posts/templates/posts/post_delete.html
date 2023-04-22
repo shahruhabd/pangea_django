@@ -1,0 +1,15 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+  <h1>Delete post</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete the post "{{ post.title }}"?</p>
+
+    <p>Did you manage to rent the apartment?</p>
+    <input type="radio" name="is_rent" value="True"> Yes<br>
+    <input type="radio" name="is_rent" value="False"> No<br><br>
+
+    <button type="submit">Delete</button>
+  </form>
+{% endblock %}

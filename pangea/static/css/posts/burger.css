@@ -1,0 +1,79 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 20px 0;
+  }
+  
+  .burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 28px;
+    cursor: pointer;
+  }
+  .line {
+    width: 41px;
+    height: 4px;
+    background-color: #fff;
+    border-radius: 16px;
+    transition: .5s ease;
+  }
+  .line2 {
+    width: 27px;
+  }
+  .menu {
+    position: absolute;
+    right: 0px;
+    top: 64px;
+    display: none;
+    text-align: end;
+    padding: 20px;
+    background-color: #fff;
+    width: 268px;
+    z-index: 1;
+    border: 4px solid #34958e;;
+    border-radius: 12px 0 12px 0px;
+    transition: .5s ease;
+
+  }
+  
+  .menu li {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    list-style-type: none;
+    border-bottom: 2px solid #34958e;;
+  }
+  .menu li:last-child {
+    border: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  
+  .menu a {
+    color: #333;
+    text-decoration: none;
+  }
+  .menu a:hover {
+    color: #666;
+
+  }
+  .active {
+    display: flex;
+    flex-direction: column;
+  }
+  .rotate {
+    flex-direction: row;
+    width: 41px;
+  }
+  .line-rotate {
+    transform: rotate(180deg);
+    width: 4px;
+    height: 36px;
+    transition: .5s ease;
+  }
+  .line2_rotate {
+    height: 28px;
+  }
+  
