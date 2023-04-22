@@ -5,18 +5,18 @@
 <link href="{% static 'css/posts/post_list.css' %}" rel="stylesheet" />{% endblock %}
 {% block content %}
 {% if messages or form.non_field_errors %}
-  <div class="alert {% if messages %} alert-success {% else %} alert-danger {% endif %} alert-dismissible fade show"
-    role="alert">
-    {% if messages %}
-    {% for message in messages %}
-    {{ message }}
-    {% endfor %}
-    {% else %}
-    {{ form.non_field_errors }}
-    {% endif %}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
+<div class="alert {% if messages %} alert-success {% else %} alert-danger {% endif %} alert-dismissible fade show"
+  role="alert">
+  {% if messages %}
+  {% for message in messages %}
+  {{ message }}
+  {% endfor %}
+  {% else %}
+  {{ form.non_field_errors }}
   {% endif %}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
 <div class="">
   <div class="d-flex flex-column justify-content-center">
     {% if posts %}
@@ -30,7 +30,7 @@
         {% endif %}
         <div class="d-flex justify-content-between w-100">
           <div class="post_main-info">
-            <div> 
+            <div>
               <div class="post_author-name">{{ post.user_id.first_name }} {{ post.user_id.last_name }}</div>
               <h5 class="post_title">{{ post.title }}</h5>
               <div class="post_desc">{{ post.description }}</div>

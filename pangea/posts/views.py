@@ -10,8 +10,6 @@ def post_list(request):
     posts = Post.objects.order_by('-created_at')
     return render(request, 'posts/post_list.html', {'posts': posts})
 
-
-
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)

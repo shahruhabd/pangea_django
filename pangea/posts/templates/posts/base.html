@@ -29,8 +29,8 @@
             {% endif %}
             <li><a href="{% url 'posts:post_list' %}" class="header_link">Все объявления</a></li>
             {% if user.is_authenticated %}
+            <li><a href="{% url 'favorites:favorite_posts' %}" class="header_link">Избранное</a></li>
             <li><a href="/posts/new" class="header_link">Создать объявление</a></li>
-            <li><a href="" class="header_link">Избранное</a></li>
             <li><a href="/users/profile" class="header_link">Профиль {{user}}</a></li>
             {% else %}
             <li><a href="{% url 'users:login' %}" class="header_link">Войти</a></li>
