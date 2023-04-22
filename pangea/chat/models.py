@@ -12,4 +12,4 @@ class Message(models.Model):
         ordering = ['-timestamp']
 
     def __str__(self):
-        return self.message
+        return self.content
