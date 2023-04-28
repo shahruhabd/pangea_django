@@ -31,7 +31,9 @@
         <div class="d-flex justify-content-between w-100">
           <div class="post_main-info">
             <div>
+              {% if post.user_id.first_name %}
               <div class="post_author-name">{{ post.user_id.first_name }} {{ post.user_id.last_name }}</div>
+              {% endif %}
               <h5 class="post_title">{{ post.title }}</h5>
               <div class="post_desc">{{ post.description }}</div>
             </div>
