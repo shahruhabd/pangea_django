@@ -5,6 +5,9 @@
 <link href="{% static 'css/posts/post_detail.css' %}" rel="stylesheet" />
 {% endblock %}
 {% block content %}
+<a href="javascript:history.back()" class="login_arrow-back">
+  <img src="{% static 'img/users/arrow-back.png' %}" alt="">
+</a>
 {% if messages or form.non_field_errors %}
 <div class="alert {% if messages %} alert-success {% else %} alert-danger {% endif %} alert-dismissible fade show"
   role="alert">
@@ -21,12 +24,13 @@
 {% with user=request.user %}
 
 <div class="post_detail_wrapper">
-  {% if post.image %}
-  <div><img src="{{ post.image.url }}" alt="{{ post.title }}" width="400" style="border-radius: 8px;"></div>
-  {% else %}
-  <div><img src="{% static 'img/posts/default_img.png'%}" alt="{{ post.title }}" width="400"
-      style="border-radius: 8px;"></div>
-  {% endif %}
+  <div class="">
+    {% if post.image %}
+    <img src="{{ post.image.url }}" alt="{{ post.title }}" width="400" style="border-radius: 8px;">
+    {% else %}
+    <img src="{% static 'img/posts/default_img.png'%}" alt="{{ post.title }}" width="400" style="border-radius: 8px;">
+    {% endif %}
+  </div>
   <div class="d-flex flex-column w-100">
     <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 30px;">
       <h5 class="post_detail_title">{{ post.title }}</h5>
@@ -41,17 +45,34 @@
     <div class="post_detail_autor_contact">
       <div style="font-weight: 600;">{{ post.user_id.first_name }} {{ post.user_id.last_name }}</div>
       <div class="d-flex post_detail_phone-number">
-        <a href="tel:{{ post.user_id.phone_number }}" class="post_detail_phone-number_block" id="tel">{{ post.user_id.phone_number }}</a>
+        <a href="tel:{{ post.user_id.phone_number }}" class="post_detail_phone-number_block" id="tel">
+          {{ post.user_id.phone_number }}
+        </a>
         <button class="post_detail_phone-number_btn" id="phone">Показать номер телефона</button>
       </div>
     </div>
     <div class="d-flex justify-content-between">
       <div class="post_detail_autor">Опубликовано: {{ post.created_at }}</div>
-      <a href="{% url 'favorites:add_to_favorite' post_id=post.id %}"><img src="{% static 'img/posts/favorite-heart.png' %}" alt=""></a>
+      <a href="{% url 'favorites:add_to_favorite' post_id=post.id %}"><img
+          src="{% static 'img/posts/favorite-heart.png' %}" alt=""></a>
     </div>
     {% if user.is_authenticated and user == post.user_id %}
     <div class="my-3">
-      <a href="{% url 'posts:delete_post' post.pk %}" class="post_detail_btn-del">Удалить</a>
+      <!-- <a href="{% url 'posts:delete_post' post.pk %}" class="post_detail_btn-del">Удалить</a> -->
+      {% if not post.archived %}
+      <form action="{% url 'posts:archive_post' post.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="post_detail_btn-del">Архивировать</button>
+      </form>
+      {% else %}
+      <div class="alert alert-warning" role="alert">
+        Объявление в архиве!
+      </div>
+      <form action="{% url 'posts:return_post' post.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="post_detail_btn-del">Вернуть объявление</button>
+      </form>
+      {% endif %}
     </div>
     {% endif %}
   </div>
@@ -59,14 +80,13 @@
 </div>
 
 <script>
-const phone = document.getElementById('phone');
-const tel = document.getElementById('tel');
-phone.addEventListener('click', () => {
-  tel.classList.toggle('show')
-})
+  const phone = document.getElementById('phone');
+  const tel = document.getElementById('tel');
+  phone.addEventListener('click', () => {
+    tel.classList.toggle('show')
+  })
 </script>
 
 
 {% endwith %}
 {% endblock %}
-

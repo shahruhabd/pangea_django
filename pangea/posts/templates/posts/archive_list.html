@@ -1,13 +1,12 @@
 {% extends 'posts/base.html' %}
 {% load static %}
-{% block title %}Поиск жилья в Алматы{% endblock %}
+{% block title %}Архив{% endblock %}
 {% block css %}
 <link href="{% static 'css/posts/post_list.css' %}" rel="stylesheet" />{% endblock %}
 {% block content %}
 {% if messages or form.non_field_errors %}
-<div class="alert font-weight-bold {% if messages %} alert-success {% else %} alert-danger {% endif %} alert-dismissible fade show d-flex flex-column py-3 px-5 align-items-center text-center"
-  role="alert"
-  style="margin: 0 auto 20px; font-weight: 600; font-size: 22px;">
+<div class="alert {% if messages %} alert-success {% else %} alert-danger {% endif %} alert-dismissible fade show"
+  role="alert">
   {% if messages %}
   {% for message in messages %}
   {{ message }}
@@ -15,24 +14,20 @@
   {% else %}
   {{ form.non_field_errors }}
   {% endif %}
-  <img src="{% static 'img/posts/people-ill.png' %}" alt="" width="300" style="margin-top: 20px;">
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 {% endif %}
 <div class="">
   <div class="d-flex flex-column justify-content-center">
+    <h1>Архивированные посты</h1>
     {% if posts %}
     {% for post in posts %}
     <div class="mb-4 post_list_wrapper">
       <div class="d-flex">
         {% if post.image %}
-        <a href="{% url 'posts:post_detail' post.pk %}">
-          <img src="{{ post.image.url }}" alt="{{ post.title }}" width="253" class="post_img">
-        </a>
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" width="253" class="post_img">
         {% else %}
-        <a href="{% url 'posts:post_detail' post.pk %}">
-          <img src="{% static 'img/posts/default_img.png'%}" alt="{{ post.title }}" width="253" class="post_img">
-        </a>
+        <img src="{% static 'img/posts/default_img.png'%}" alt="{{ post.title }}" width="253" class="post_img">
         {% endif %}
         <div class="d-flex justify-content-between w-100">
           <div class="post_main-info">

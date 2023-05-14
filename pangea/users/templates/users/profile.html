@@ -22,8 +22,20 @@
                     <div>Дата регистрации: </div>
                 </div>
                 <div>
-                    <div>{{ user.first_name }} {{ user.last_name }}</div>
-                    <div>{{ user.phone_number }}</div>
+                    <div>
+                        {% if user.first_name %}
+                        {{ user.first_name }} {{ user.last_name }}
+                        {% else %}
+                        -
+                        {% endif %}
+                    </div>
+                    <div>
+                        {% if user.phone_number %}
+                        {{ user.phone_number }}
+                        {% else %}
+                        -
+                        {% endif %}
+                    </div>
                     <div>{{ user.email }}</div>
                     <div>{{ user.date_joined }}</div>
                 </div>
@@ -31,6 +43,9 @@
         </div>
         <div>
             <button id="btn" class="btn btn-light">Изменить</button>
+            <a href="{% url 'posts:archive_list' %}" class="btn" style="background-color: #2c786c; color: #fff;">
+                Мой архив <span class="badge badge-light">{{ archived_posts_count }}</span>
+            </a>
             <a href="{% url 'users:logout' %}" class="btn btn-danger">Выйти</a>
         </div>
     </div>
@@ -77,6 +92,32 @@
     </div>
 </form>
 
+{% if my_posts %}
+<h1 class="my_posts_title">Мои объявления</h1>
+{% endif %}
+<div class="my_posts">
+    {% if my_posts %}
+    {% for post in my_posts %}
+    <div class="my_post">
+
+        {% if post.image %}
+        <a href="{% url 'posts:post_detail' post.pk %}" class="image-container">
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="my_post_img">
+        </a>
+        {% else %}
+        <a href="{% url 'posts:post_detail' post.pk %}" class="image-container">
+            <img src="{% static 'img/posts/default_img.png'%}" alt="{{ post.title }}" class="my_post_img">
+        </a>
+        {% endif %}
+        <div class="p-3">
+            <h5 class="my_post_title">{{ post.title }}</h5>
+            <div class="my_post_desc">{{ post.description }}</div>
+            <a href="{% url 'posts:post_detail' post.pk %}" class="my_post_detail_link">Подробнее</a>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
 <script>
     const btn = document.getElementById('btn')
     const form = document.getElementById('form')

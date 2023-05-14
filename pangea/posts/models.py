@@ -11,6 +11,7 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     cost = models.IntegerField(blank=True, null=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    archived = models.BooleanField(default=False)
 
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])

@@ -31,10 +31,9 @@
 }
 .post_img {
   border-radius: 8px;
-  height: 148px;
+  /* height: 148px; */
 }
 .post_detail_link {
-  margin-top: 10px;
   padding: 4px;
   width: 100px;
   border-radius: 16px;

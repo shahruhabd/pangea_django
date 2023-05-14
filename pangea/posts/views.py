@@ -1,3 +1,4 @@
+from datetime import timezone
 from django.core.files.storage import default_storage
 from django.shortcuts import render, redirect, get_object_or_404, redirect
 from .models import Post
@@ -7,7 +8,7 @@ from django.contrib import messages
 
 
 def post_list(request):
-    posts = Post.objects.order_by('-created_at')
+    posts = Post.objects.filter(archived=False).order_by('-created_at')
     return render(request, 'posts/post_list.html', {'posts': posts})
 
 def post_new(request):
@@ -16,7 +17,6 @@ def post_new(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.user_id = request.user
-            post.save()
             messages.success(request, 'Ваше объявление было успешно опубликовано!')
             post.save()
             return redirect('/posts/')
@@ -47,3 +47,22 @@ def delete_post(request, pk):
     
     return render(request, 'posts/post_delete.html', {'post': post})
 
+
+def archive_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.archived = True
+    messages.success(request, 'Ваше объявление было успешно добавлено в архив!')
+    post.save()
+    return redirect('posts:post_list')
+
+def return_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.archived = False
+    messages.success(request, 'Ваше объявление было успешно опубликовано!')
+    post.save()
+    return redirect('posts:post_list')
+
+def archive_list(request):
+    user = request.user
+    posts = Post.objects.filter(user_id=user, archived=True).order_by('-created_at')
+    return render(request, 'posts/archive_list.html', {'posts': posts})

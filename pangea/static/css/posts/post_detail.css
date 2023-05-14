@@ -77,10 +77,6 @@
     font-weight: 600;
     align-items: center;
 }
-.post_detail_phone-number:hover {
-    background-color: #93e4c1;
-    transition: 0.3s ease;
-}
 .post_detail_phone-number_block {
     display: none;
     border: 0;
@@ -101,4 +97,17 @@
 }
 .post_detail_autor {
     color: #fff;
+}
+.login_arrow-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 50px;
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.login_arrow-back:hover {
+    opacity: 0.9;
 }
