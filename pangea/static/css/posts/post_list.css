@@ -17,6 +17,7 @@
   justify-content: space-between;
 }
 .post_title {
+  margin-top: 10px;
   font-weight: 800;
   font-size: 24px;
   color: #FFFFFF;

@@ -1,0 +1,90 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+{% block title %}Избранное{% endblock %}
+{% block css %}
+<link href="{% static 'css/posts/post_list.css' %}" rel="stylesheet" />{% endblock %}
+{% block content %}
+{% if messages or form.non_field_errors %}
+<div class="alert {% if messages %} alert-success {% else %} alert-danger {% endif %} alert-dismissible fade show"
+    role="alert">
+    {% if messages %}
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    {% else %}
+    {{ form.non_field_errors }}
+    {% endif %}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+<div class="">
+    <div class="d-flex flex-column justify-content-center">
+        <div class="mb-5">
+            <a href="{% url 'posts:post_list' %}" class="btn" style="background-color: #2c786c; color: #fff;">Все
+                объявления<span class="badge badge-light">{{ posts_count }}</span></a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'posts:archive_list' %}" class="btn"
+                style="background-color: #2c786c; color: #fff;">Архив<span class="badge badge-light">{{ archive_count}}</span></a>
+            <a href="{% url 'posts:favorite_list' %}" class="btn" style="background-color: #56c4b4; color: #fff;">Избранное<span class="badge badge-light">{{ favorite_count }}</span></a>
+            {% endif %}
+        </div>
+        <h1 class="text-light mb-5">Избранные посты</h1>
+        {% if favorites %}
+        {% for favorite in favorites %}
+        <div class="mb-4 post_list_wrapper">
+            <div class="d-flex">
+                {% if favorite.post.image %}
+                <img src="{{ favorite.post.image.url }}" alt="{{ favorite.post.title }}" width="253" class="post_img">
+                {% else %}
+                <img src="{% static 'img/posts/default_img.png'%}" alt="{{ favorite.post.title }}" width="253" class="post_img">
+                {% endif %}
+                <div class="d-flex justify-content-between w-100">
+                    <div class="post_main-info">
+                        <div>
+                            {% if favorite.post.user_id.first_name %}
+                            <div class="post_author-name">{{ favorite.post.user_id.first_name }} 
+                                {{ favorite.post.user_id.last_name }}
+                            </div>
+                            {% endif %}
+                            <h5 class="post_title">{{ favorite.post.title }} <span>
+                                    <svg fill="#dc3623" height="24px" width="24px" version="1.1" id="Capa_1"
+                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        viewBox="0 0 230 230" xml:space="preserve" stroke="#dc3623">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path
+                                                d="M213.588,120.982L115,213.445l-98.588-92.463C-6.537,96.466-5.26,57.99,19.248,35.047l2.227-2.083 c24.51-22.942,62.984-21.674,85.934,2.842L115,43.709l7.592-7.903c22.949-24.516,61.424-25.784,85.936-2.842l2.227,2.083 C235.26,57.99,236.537,96.466,213.588,120.982z">
+                                            </path>
+                                        </g>
+                                    </svg></span>
+                                <span class="text-warning fs-6">
+                                    {% if favorite.post.archived %}
+                                    (в архиве)
+                                    {% endif %}
+                                </span>
+                            </h5>
+                            <div class="post_desc">{{ favorite.post.description }}</div>
+                        </div>
+                        <a href="{% url 'posts:post_detail' favorite.post.pk %}" class="post_detail_link">Подробнее</a>
+                    </div>
+                    <div class="d-flex flex-column justify-content-between align-items-end">
+                        {% if favorite.post.cost %}
+                        <div class="post_cost">{{ favorite.post.cost }}тг</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="post_author_info">
+                <div>Алматы |</div>
+                <small>{{ favorite.post.created_at }}</small>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h2>Пока объявлений нет</h2>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
