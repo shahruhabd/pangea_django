@@ -10,12 +10,15 @@ from django.contrib import messages
 def post_list(request):
     user = request.user
     posts = Post.objects.filter(archived=False).order_by('-created_at')
+    favorites = []
+    if user.is_authenticated:
+        favorites = Favorite.objects.filter(user_id=user.id, post__in=posts)
     posts_count = Post.objects.filter(archived=False).count()
-    archive_count = Post.objects.filter(user_id=user, archived=True).count()
-    favorite_count = Favorite.objects.filter(user=user).count()
-    favorites = Favorite.objects.filter(user=request.user, post__in=posts)
-    favorite_posts = favorites.values_list('post', flat=True)
+    archive_count = Post.objects.filter(user_id=user.id, archived=True).count()
+    favorite_count = Favorite.objects.filter(user_id=user.id).count()
+    favorite_posts = favorites.values_list('post', flat=True) if favorites else []
     return render(request, 'posts/post_list.html', {'posts': posts, 'favorite_posts': favorite_posts, 'posts_count': posts_count, 'archive_count': archive_count, 'favorite_count': favorite_count })
+
 
 def post_new(request):
     if request.method == "POST":
