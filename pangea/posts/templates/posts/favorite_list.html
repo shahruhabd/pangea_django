@@ -4,7 +4,8 @@
 {% block css %}
 <link href="{% static 'css/posts/post_list.css' %}" rel="stylesheet" />{% endblock %}
 {% block content %}
-{% if messages or form.non_field_errors %}
+<div class="post_list_main-wrapper">
+    {% if messages or form.non_field_errors %}
 <div class="alert {% if messages %} alert-success {% else %} alert-danger {% endif %} alert-dismissible fade show"
     role="alert">
     {% if messages %}
@@ -42,10 +43,18 @@
                     <div class="post_main-info">
                         <div>
                             {% if favorite.post.user_id.first_name %}
-                            <div class="post_author-name">{{ favorite.post.user_id.first_name }} 
-                                {{ favorite.post.user_id.last_name }}
-                            </div>
+                            <div class="post_author-name">{{ favorite.post.user_id.first_name }} {{ favorite.post.user_id.last_name }}</div>
                             {% endif %}
+                            <!-- для планшетки -->
+                            <div class="post_cost_wrapper_tablet">
+                                {% if favorite.post.user_id.first_name %}
+                                <div class="post_author-name post_author-name_tablet">{{ favorite.post.user_id.first_name }} {{ favorite.post.user_id.last_name }}</div>
+                                {% endif %}
+                                {% if favorite.post.cost %}
+                                <div class="post_cost">{{ favorite.post.cost }}тг</div>
+                                {% endif %}
+                            </div>
+                            <!--  -->
                             <h5 class="post_title">{{ favorite.post.title }} <span>
                                     <svg fill="#dc3623" height="24px" width="24px" version="1.1" id="Capa_1"
                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -69,13 +78,23 @@
                         </div>
                         <a href="{% url 'posts:post_detail' favorite.post.pk %}" class="post_detail_link">Подробнее</a>
                     </div>
-                    <div class="d-flex flex-column justify-content-between align-items-end">
+                    <div class="post_cost_wrapper">
                         {% if favorite.post.cost %}
                         <div class="post_cost">{{ favorite.post.cost }}тг</div>
                         {% endif %}
                     </div>
                 </div>
             </div>
+            <!-- для планшетки -->
+            <div class="post_author_info post_author_info_tablet">
+                <div style="min-width: 230px;">Алматы | <small>{{ favorite.post.created_at }}</small></div>
+                {% if user.is_authenticated %}
+                <a href="{% url 'posts:post_detail' favorite.post.pk %}" class="post_detail_link post_detail_link_tablet">Подробнее</a>
+                {% else %}
+                <a href="{% url 'users:login' %}" class="post_detail_link post_detail_link_tablet">Подробнее</a>
+                {% endif %}
+          </div>
+          <!--  -->
             <div class="post_author_info">
                 <div>Алматы |</div>
                 <small>{{ favorite.post.created_at }}</small>
@@ -83,8 +102,9 @@
         </div>
         {% endfor %}
         {% else %}
-        <h2>Пока объявлений нет</h2>
+        <h2 class="text-light">Пока объявлений нет</h2>
         {% endif %}
     </div>
+</div>
 </div>
 {% endblock %}

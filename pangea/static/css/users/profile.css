@@ -8,6 +8,8 @@
     display: block;
 }
 .main_info {
+    display: flex;
+    gap: 1rem;
     background-color: #3baea0;
     padding: 15px;
     border-radius: 16px;
@@ -55,6 +57,9 @@
     height: 380px;
     /* height: auto; */
     overflow: hidden; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .my_post_detail_link {
     padding: 4px 10px;
@@ -70,4 +75,45 @@
     height: 100px;
     overflow: hidden; 
     text-overflow: ellipsis;
+}
+.main_info_image {
+    width: 300px; 
+    height: 300px; 
+    overflow: hidden;
+}
+@media screen and (max-width: 768px) {
+    .main_info {
+        flex-direction: column;
+        align-items: center;
+        background-color: inherit;
+        padding: 0;
+    }
+    .main_info_user-desc {
+        background-color: #3baea0;
+        border-radius: 1rem;
+        padding: 20px;
+        margin-bottom: 1rem;
+    }
+    .main_info_text {
+        width: 70%;
+    }
+    .main_info_image {
+        width: 70%;
+        height: auto;
+    }
+    .my_posts {
+        justify-content: center;
+    }
+    .my_post {
+        width: 70%;
+    }
+    .image-container {
+        width: 100%;
+        height: auto;
+    }
+    .edit_form {
+        width: 70%;
+        margin: 0 auto;
+        border-radius: 1rem;
+    }
 }

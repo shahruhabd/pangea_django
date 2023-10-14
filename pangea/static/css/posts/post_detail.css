@@ -111,3 +111,30 @@
 .login_arrow-back:hover {
     opacity: 0.9;
 }
+.post_img {
+    border-radius: 8px;
+    width: 400px;
+}
+.title-cost_block {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 30px;
+    gap: 10px;
+}
+@media screen and (max-width: 768px) {
+    .post_detail_main-wrapper {
+        padding: 0 40px;
+        border: 0;
+    }
+    .post_img {
+        width: 300px;
+    }
+    .post_detail_wrapper {
+        gap: 20px;
+    }
+    .title-cost_block {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+}

@@ -20,6 +20,9 @@
     cursor: pointer;
     transition: .3s ease;
 }
+#id_image {
+    width: 330px;
+}
 .post_add_submit:hover {
     background-color: #3cc0b5;
     transition: .3s ease;
@@ -41,9 +44,6 @@ form label {
     margin-bottom: 7px;
     margin-left: 7px;
 }
-input[type="file"] {
-    display: none;
-}
 label.file-label {
     color: #FFFFFF;
     font-weight: 700;
@@ -56,6 +56,41 @@ label.file-label {
     cursor: pointer;
   }
 .form-input_desc {
-    height: 100px;
+    height: 200px;
     padding: 10px 15px;
+}
+.post-add_form {
+    display: flex;
+    justify-content: space-between;
+}
+.post-add_img_wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 110px;
+    width: 30%;
+}
+.post-add_main-info_form {
+    width: 60%;
+}
+@media screen and (max-width: 768px) {
+    .post-add_wrapper {
+        padding: 40px;
+    }
+    .post-add_form {
+        flex-direction: column;
+    }
+    .post-add_img_wrapper {
+        margin: 0 auto;
+        width: auto;
+        max-width: 400px;
+    }
+    .post-add_main-info_form {
+        width: auto;
+    }
+}
+.create_post_with_tg {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px 40px;
 }

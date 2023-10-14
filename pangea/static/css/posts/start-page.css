@@ -4,18 +4,21 @@
     flex-direction: column;
     align-items: center;
 }
+
 .start-page_text {
     font-weight: 900;
     font-size: 75px;
     color: #FFFFFF;
     letter-spacing: 1.75px;
 }
+
 .start-page_devider {
     height: 5px;
     width: 100%;
     background-color: #fff;
     border-radius: 10px;
 }
+
 .start-page_input-link {
     height: 63px;
     width: 75%;
@@ -26,28 +29,35 @@
     padding: 0 27px;
     cursor: pointer;
 }
+
 .start-page_input-link a {
     text-decoration: none;
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
+
 .start-page_input-link_text {
     color: rgba(120, 120, 120, 0.66);
     font-weight: 500;
     font-size: 21px;
     letter-spacing: 1.25px;
 }
+
 .start-page_img_link-house {
     position: relative;
 }
+
 .start-page_house {
     position: absolute;
-    /* bottom: 20px; */
-    /* right: calc((100vw - 1200px)/2); */
     cursor: pointer;
     transition: 0.5s;
 }
+
+.start-page_house_main {
+    margin: 10px 0 0 50px;
+}
+
 .start-page_house:hover {
     transform: rotate(5deg);
     transition: 1s;
@@ -55,15 +65,63 @@
 
 /* Создаем анимацию печати текста */
 @keyframes typing {
-    from { width: 0 }
-    to { width: 225px }
-  }
-  
-  /* Применяем анимацию к текстовому блоку */
-  .text-animation {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 225px
+    }
+}
+
+/* Применяем анимацию к текстовому блоку */
+.text-animation {
     display: inline-block;
     animation: typing 4s steps(30, end) infinite;
     white-space: nowrap;
     overflow: hidden;
     border-right: .15em solid #1ab977;
-  }
+}
+.start-page_subtext {
+    font-size: 51px; 
+    text-shadow: 0 0 20px #75FFC5;
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        padding: 40px;
+        align-items: center;
+    }
+
+    .start-page_house {
+        margin-left: -90px;
+    }
+
+    .start-page_house_main {
+        margin: 10px 0 0 -70px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .start-page_text {
+        font-size: 32px;
+    }
+    .start-page_input-link {
+        height: 42px;
+    }
+    .start-page_input-link a {
+        display: flex;
+        align-items: center;
+    }
+    .start-page_input-link img {
+        width: 20px;
+        height: 20px;
+    }
+    .start-page_house {
+        margin: -50px 0 0 -250px;
+    }
+    .start-page_house_main {
+        margin-top: -35px;
+        margin-left: -225px;
+    }
+}

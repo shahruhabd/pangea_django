@@ -32,3 +32,9 @@ a {
     color: #fff;
     letter-spacing: 0.7px;
 }
+@media screen and (max-width: 768px) {
+    .header {
+        align-items: center;
+        padding: 40px;
+    }
+}

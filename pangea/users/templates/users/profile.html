@@ -6,13 +6,13 @@
 {% endblock %}
 
 {% block content %}
-<div class="d-flex gap-3 main_info">
-    <div style="width: 300px; height: 300px; overflow: hidden;">
+<div class="main_info">
+    <div class="main_info_image">
         <img src="{% if user.image %} {{ user.image.url }} {% else %} {% static 'img/users/default-pangea.png' %} {% endif %}"
             class="rounded-4" style="width: 100%; height: 100%; object-fit: cover; ">
     </div>
     <div class="main_info_text d-flex flex-column justify-content-between">
-        <div class="">
+        <div class="main_info_user-desc">
             <h1>{{ user }}</h1>
             <div class="d-flex gap-3">
                 <div>
